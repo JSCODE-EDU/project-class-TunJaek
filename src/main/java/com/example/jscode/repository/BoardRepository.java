@@ -20,4 +20,8 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
 
     // 특정 게시글 삭제
     void deleteById(Long id);
+
+    // 검색 키워드로 조회
+    List<Board> findByBoardTitleContains(String boardTitle);
+
 }
