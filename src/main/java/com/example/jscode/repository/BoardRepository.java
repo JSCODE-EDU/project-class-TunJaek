@@ -23,5 +23,4 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
 
     // 검색 키워드로 조회
     List<Board> findByBoardTitleContains(String boardTitle);
-
 }
