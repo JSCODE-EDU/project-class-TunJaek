@@ -1,8 +1,10 @@
 package com.example.jscode.dto;
 
 import com.example.jscode.entity.Board;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -18,7 +20,9 @@ public class BoardRequestDTO {
         @Size(min = 1, max = 1000)
         private String boardContents;
 
+        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
         private LocalDateTime createTime;
+        public BoardRequestDTO(){}
 
         @Builder
         public BoardRequestDTO(String boardTitle, String boardContents,LocalDateTime createTime){

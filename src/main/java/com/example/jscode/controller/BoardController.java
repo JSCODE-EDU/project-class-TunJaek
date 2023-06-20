@@ -34,9 +34,9 @@ public class BoardController {
             @ApiResponse(code = 201, message = "게시글 작성 성공."),
             @ApiResponse(code = 400, message = "제목 또는 내용이 유효성 검사에서 실패할 때.", response = String.class)
     })
-    public SingleResponse<Board> createBoard(@RequestBody @Valid BoardRequestDTO boardRequestDTO) {
-        Board board=boardService.createBoard(boardRequestDTO);
-        return responseService.singleResponse(board);
+    public SingleResponse<BoardResponseDTO> createBoard(@RequestBody @Valid BoardRequestDTO boardRequestDTO) {
+        BoardResponseDTO boardResponseDTO = BoardResponseDTO.from(boardService.createBoard(boardRequestDTO));
+        return responseService.singleResponse(boardResponseDTO);
     }
     @GetMapping("") //게시글 목록 조회
     @ApiOperation(value = "게시글 전체 조회 기능", notes = "전체 게시글을 조회하는 API")
@@ -54,7 +54,6 @@ public class BoardController {
             @ApiResponse(code = 200, message = "특정 게시글 조회 성공"),
             @ApiResponse(code = 404, message = "존재하지 않는 게시글입니다."),
             @ApiResponse(code = 500, message = "서버 오류입니다 관리자에게 문의 부탁드립니다.")
-
     })
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/{id}") //특정 게시판 조회
